@@ -1,4 +1,3 @@
-'''
 from pickle import TRUE
 from dash import Dash
 from dash.dependencies import Output, Input
@@ -20,7 +19,7 @@ external_stylesheets = [
 
 
 #import data frame
-df = pd.read_csv("data/final_list.csv")
+df = pd.read_csv("final_list.csv")
 
 
 # data cleaning - renaming
@@ -176,8 +175,6 @@ def run_scraper_update_content(n_clicks):
 # Construct the dash layout
 create_dash_layout(app)
 
-# Run flask app
-if __name__ == "__main__": app.run_server(debug=False, host='0.0.0.0', port=8050)
 '''
 from dash import Dash, callback, html, dcc
 import dash_bootstrap_components as dbc
@@ -218,6 +215,7 @@ def create_dash_layout(app):
 
 # Construct the dash layout
 create_dash_layout(app)
+'''
 
 # Run flask app
 if __name__ == "__main__": app.run_server(debug=False, host='0.0.0.0', port=8050)
