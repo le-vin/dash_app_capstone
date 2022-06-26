@@ -1,4 +1,11 @@
 from pickle import TRUE
+from dash import Dash, callback, html, dcc
+import dash_bootstrap_components as dbc
+import numpy as np
+import pandas as pd
+import matplotlib as mpl
+import gunicorn                     #whilst your local machine's webserver doesn't need this, Heroku's linux webserver (i.e. dyno) does. I.e. This is your HTTP server
+from whitenoise import WhiteNoise   #for serving static files on Heroku
 from dash import Dash
 from dash.dependencies import Output, Input
 import dash, dash_table
@@ -47,7 +54,7 @@ app.layout = html.Div([
     
         #header part
         html.Div([
-            html.Img(src=("/assets/Logo.png")),
+            #html.Img(src=("/assets/Logo.png")),
             html.H1(children="Start Up List"),
             html.P(id='scraping-date', children="Last scrape was the 21.05.22"),
             html.Button("Update", id='update-button', n_clicks=0),
@@ -169,7 +176,7 @@ def run_scraper_update_content(n_clicks):
     if n_clicks:
         script_path = './test.py'
         exec(open(script_path).read())
-        df = pd.read_csv("data/final_list.csv")
+        df = pd.read_csv("final_list.csv")
         return 'Last scraped on xxx, Total times updated: {}'.format(n_clicks), df.to_dict('records')
 
 # Construct the dash layout
